@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+:root {
+  --background-color: #f1f1f1;
+  --hover-color: #1d24ca;
+}
+
+.Nav {
+  background: var(--background-color);
+  box-shadow: 0px 5px 15px 0px rgba(212, 201, 201, 0.75);
+  font-family: "Poppins", sans-serif;
+  height: 60px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* Make sure the navbar is positioned relatively */
+  padding: 0 50px;
+  background: var(--background-color);
+}
+
+.logo {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.main_menu {
+  height: 100%;
+}
+.nav_part2 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.main_menu ul li {
+  list-style-type: none;
+}
+.main_menu li a:hover {
+  color: var(--hover-color);
+}
+
+.Nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav_part2 {
+  display: flex;
+  gap: 30px;
+}
+
+.nav_part2 a {
+  font-size: 1.1rem;
+}
+
+.has_dropdown {
+  position: relative; /* Ensure the dropdown is positioned relative to its parent */
+}
+.has_dropdown a {
+  padding: 25px 0;
+}
+.has_dropdown:hover .sub_menu {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  top: calc(100% + 16px);
+}
+
+.sub_menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  top: 200%;
+  left: -10%;
+  width: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, top 0.3s ease;
+}
+
+.sub_menu li {
+  padding: 10px 30px 10px 0px;
+  white-space: nowrap;
+}
+
+.sub_menu li a {
+  color: black;
+  padding: 5px 0;
+}
+
+.sub_menu li:hover {
+  color: var(--hover-color);
+}
+
+
+/* nav cart */
+.cart {
+  position: relative; /* Ensure the pseudo-element is positioned relative to the cart */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cart::after {
+  content: ""; /* Empty content to generate the dot */
+  position: absolute; /* Position it absolutely within the .cart element */
+  top: -3px; /* Adjust the top position as needed */
+  right: -8px; /* Adjust the right position as needed */
+  width: 10px; /* Width of the dot */
+  height: 10px; /* Height of the dot */
+  background-color: rgba(255, 33, 33, 0.886); /* Color of the dot */
+  backdrop-filter: 100px;
+  border-radius: 50%; /* Make it a circle */
+  border: 2px solid var(--background-color); /* Optional: Add a white border to make it stand out */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+.tempCart {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+

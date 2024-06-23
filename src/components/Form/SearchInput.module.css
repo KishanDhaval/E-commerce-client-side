@@ -1,0 +1,32 @@
+
+.searchBar {
+    display: flex;
+    box-sizing: border-box;
+    width: 30rem;
+}
+
+.searchBar input {
+    border-right: none;
+    outline: none;
+    padding: 5px 10px;
+    width: 90%;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    font-size: 0.9rem;
+    border-color: rgba(128, 128, 128, 0.559);
+    border-width: 0.2px;
+}
+
+.searchBar button {
+    border-left: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 5px;
+    background-color: transparent;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-color: rgba(128, 128, 128, 0.559);
+    border-width: 0.2px;
+    cursor: pointer;
+}
