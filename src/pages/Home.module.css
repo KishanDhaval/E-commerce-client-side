@@ -5,17 +5,7 @@
     --background-color: #f1f1f1;
     --hover-color: rgb(102, 40, 245);
 }
-* {
-    margin : 0;
-    padding : 0;
-    box-sizing : border-box;
-    font-family: "Poppins", sans-serif;
-}
 
-html , body {
-    height  : 100%;
-    width : 100%;
-}
 
 .container {
   height: calc(100% - 60px);
@@ -40,16 +30,18 @@ html , body {
 }
 
 
-.left h2{
+.left h3{
   font-family: "Roboto", sans-serif;
-
+  font-weight: 600;
     color: #071952;
 }
 
 .input{
     display: flex;
-    gap: 2px;
+    gap: 3px;
     align-items: center;
+    font-size: 0.9rem;
+    color: #05123d;
 }
 
 .filter h2{
@@ -57,12 +49,12 @@ html , body {
 }
 
 .filterReset{
-    padding: 8px 15px;
+    padding: 5px 15px;
     background-color: #1f23ff;
     color: white;
     border-radius: 5px;
     border: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 
