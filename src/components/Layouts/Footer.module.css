@@ -1,0 +1,42 @@
+.footer {
+    background-color: #edeeee;
+    padding: 20px 0;
+    color: #6c757d;
+  }
+  
+  .footer h5 {
+    color: #343a40;
+  }
+  
+  .footerLinks {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footerLinks li {
+    margin-bottom: 10px;
+  }
+  
+  .footerLinks a {
+    color: #6c757d;
+    text-decoration: none;
+  }
+  
+  .footerLinks a:hover {
+    text-decoration: underline;
+  }
+  
+  .socialIcons {
+    margin-bottom: 10px;
+  }
+  
+  .socialIcons a {
+    margin: 0 10px;
+    color: #343a40;
+    font-size: 1.2em;
+  }
+  
+  .socialIcons a:hover {
+    color: #007bff;
+  }
+  
