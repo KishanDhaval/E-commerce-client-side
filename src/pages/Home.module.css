@@ -30,10 +30,11 @@
 }
 
 
-.left h3{
+.left h2{
   font-family: "Roboto", sans-serif;
-  font-weight: 600;
+  font-weight: 500;
     color: #071952;
+    font-size: 1.4rem;
 }
 
 .input{

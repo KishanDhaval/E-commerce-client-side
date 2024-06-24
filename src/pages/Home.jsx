@@ -126,7 +126,7 @@ const Home = () => {
         <div className={styles.home}>
           <div className={styles.left}>
             <div className={styles.filter}>
-              <h3>Filter By Category</h3>
+              <h2>Filter By Category</h2>
               {categories?.map((c) => (
                 <div key={c._id} className={styles.input}>
                   <input onChange={(e) => handleFilter(e.target.checked, c._id)} checked={checked.includes(c._id)} type="checkbox" name="category" id="category" />
@@ -136,7 +136,7 @@ const Home = () => {
             </div>
             {JSON.stringify()}
             <div className={styles.filter}>
-              <h3>Filter By Price</h3>
+              <h2>Filter By Price</h2>
               {Prices?.map((p) => (
                 <div key={p.id} className={styles.input}>
                   <input onChange={() => setRadio(p.array)} checked={radio === p.array} type="radio" name="filste" id="filste" />
