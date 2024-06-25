@@ -13,7 +13,7 @@ const Navbar = () => {
     const { user } = useAuthContext();
     const { logout } = useLogout();
     const { categories } = useCategory();
-    const [cart] = useCart();
+    const [cart, setCart] = useCart();
 
     const handleLogout = () => {
         logout();

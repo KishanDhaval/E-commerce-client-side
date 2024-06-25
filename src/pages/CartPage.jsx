@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layouts/Layout'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useCart } from '../context/CartContext'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DropIn from "braintree-web-drop-in-react";
 import axios from 'axios';
 import toast from 'react-hot-toast'
 const apiUrl = import.meta.env.VITE_API_URL;
-
 const CartPage = () => {
 
   const { user } = useAuthContext()
@@ -86,13 +85,13 @@ const CartPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
+            <h1 className="text-center bg-light p-2 mb-3">
               {
                 `Hello, ${user?.token ? user?.name : ''}`
               }
             </h1>
             <h4 className="text-center">
-              {cart?.length > 0 ? `${cart.length} items in your cart ${user?.token ? "" : 'please login to chekout'}` : ("Cart is empty, explore & make order now!!!")}
+              {cart?.length > 0 ? `${cart.length} items in your cart ${user?.token ? "" : 'please login to chekout'}` : (<p>Cart is empty <Link style={{color:'#0f32a3', textDecoration: 'none'}} to='/'>explore</Link> " & make order now!!!</p>)}
             </h4>
           </div>
         </div>

@@ -7,11 +7,11 @@ import { useCart } from '../context/CartContext';
 import toast from 'react-hot-toast';
 import styles from './Home.module.css'
 import Loader from '../components/Loader';
+import Card from '../components/Card';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Home = () => {
-  const navigate = useNavigate()
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -22,7 +22,6 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [btnLoading, setBtnLoading] = useState(false)
   const [cart, setCart] = useCart()
-
 
 
   // Get all products
@@ -129,16 +128,14 @@ const Home = () => {
           <div className={styles.left}>
             <div className={styles.filter}>
               <h5>Filter By Category</h5>
-              {loading?
-              (<div class="spinner-border"  style={{fontSize: "0.5rem",width:'1rem', height:'1rem'}} role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>)
-              :( categories?.map((c) => (
-                <div key={c._id} className={styles.input}>
-                  <input onChange={(e) => handleFilter(e.target.checked, c._id)} checked={checked.includes(c._id)} type="checkbox" name="category" id="category" />
-                  <label htmlFor="category">{c.name}</label>
-                </div>
-              )))}
+              {loading ?
+                <p>Loading...</p>
+                : (categories?.map((c) => (
+                  <div key={c._id} className={styles.input}>
+                    <input onChange={(e) => handleFilter(e.target.checked, c._id)} checked={checked.includes(c._id)} type="checkbox" name="category" id="category" />
+                    <label htmlFor="category">{c.name}</label>
+                  </div>
+                )))}
             </div>
             {JSON.stringify()}
             <div className={styles.filter}>
@@ -149,58 +146,36 @@ const Home = () => {
                   <label htmlFor="filste">{p.name}</label>
                 </div>
               ))}
-
             </div>
             <button className={styles.filterReset} onClick={resetFilters}>
               reset filter
             </button>
           </div>
           <div className={styles.right}>
-          {loading ?
-             <Loader/>  
-            :
-            (
-            <>
-            <h1 className="text-center">All Products</h1>
-              <div className="d-flex flex-wrap gap-3 m-3">
-                {products?.map((p) => (
-                  <div key={p._id} className={styles.card} style={{ width: '18rem' }}>
-                    <img
-                      src={`${apiUrl}/api/v1/product/product-photo/${p._id}`}
-                      className="card-img-top"
-                      alt={p.name}
-                    />
-                    <div className={styles.description}>
-                      <h5 className="card-title">{p.name}</h5>
-                      <p className="card-text">{p.description.substring(0, 30)}...</p>
-                      <p className={styles.price}>$ {p.price}</p>
-                      <div className={styles.buttons}>
-                        <button className={styles.moreBtn} onClick={() => navigate(`/product/${p.slug}`)}>More details</button>
-                        <button className={styles.addBtn} onClick={() => {
-                          setCart([...cart, p])
-                          localStorage.setItem("cart", JSON.stringify([...cart, p]))
-                          toast.success("Item added to cart ")
-                        }}>Add to cart</button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="m-2 p-2 text-center">
-                {products && products.length < total && (
-                  <button className='btn btn-warning'
-                    onClick={(e) => {
-                      e.preventDefault()
-                      setPage(page + 1);
-                    }}
-                  >
-                    {btnLoading ? "Loading..." : "LoadMore"}
-                  </button>
-                )}
-            </div>
-            </>  
-            )
-          }
+            {loading ?
+              <Loader />
+              :
+              <>
+                <h1 className="text-center">All Products</h1>
+                <div className="d-flex flex-wrap  ">
+                  {products?.map((p) => (
+                    <Card  product={p}/>
+                  ))}
+                </div>
+                <div className="m-2 p-2 text-center">
+                  {products && products.length < total && (
+                    <button className='btn btn-warning'
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setPage(page + 1);
+                      }}
+                    >
+                      {btnLoading ? "Loading..." : "LoadMore"}
+                    </button>
+                  )}
+                </div>
+              </>
+            }
           </div>
         </div>
       </div>
