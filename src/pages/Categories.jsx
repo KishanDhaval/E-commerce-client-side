@@ -1,18 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Layout from '../components/Layouts/Layout'
 import useCategory from '../hooks/useCategory'
 import { Link } from 'react-router-dom'
+import styles from './Categories.module.css'
 
 const Categories = () => {
     const {categories} = useCategory()
 
     return (
         <Layout title={'All Categories'}>
-            <div className="container">
-                <div className="row">
+            <div className={styles.container}>
+                <div className={styles.row}>
                     {categories?.map((c) => (
-                        <div key={c._id} className="col-md-6 mt-5 mb-3 gx-3 gy-3">
-                                <Link className='btn btn-primary'  to={`/category/${c.slug}`}>{c.name}</Link>
+                        <div className={styles.categoryCard} key={c._id}>
+                            <Link to={`/category/${c.slug}`} className={styles.categoryTitle} value={c._id}>
+                                {c.name}
+                            </Link>
+                            {c.children?.length > 0 && (
+                                <div className={styles.subcategoryList}>
+                                    {c.children.map((sub) => (
+                                        <Link to={`/category/${sub.slug}`} className={styles.subcategoryItem} key={sub._id} value={sub._id}>
+                                            -- {sub.name}
+                                        </Link>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -22,4 +34,3 @@ const Categories = () => {
 }
 
 export default Categories
-

@@ -87,16 +87,16 @@ const AdminOrder = () => {
                 <div className="container">
                   {order?.products?.map((product) => (
                     <div key={product._id} className="row mb-2 card flex-row">
-                      <div className="col-md-4 m">
+                      <div className="col-md-2 m">
                         <img
                           src={`${apiUrl}/api/v1/product/product-photo/${product._id}`}
                           className="card-img-top"
                           alt={product.name}
                         />
                       </div>
-                      <div className="col-md-8">
-                        <p>{product.name}</p>
-                        <p>{product.description.substring(0, 30)} . . .</p>
+                      <div className="col-md-8 p-2">
+                        <h4>{product.name}</h4>
+                        <h6>{product.description.substring(0, 30)} . . .</h6>
                         <p>$ {product.price}</p>
                       </div>
                     </div>

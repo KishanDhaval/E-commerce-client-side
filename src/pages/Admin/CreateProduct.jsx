@@ -3,9 +3,9 @@ import Layout from '../../components/Layouts/Layout';
 import AdminMenu from '../../components/Layouts/AdminMenu';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { Select } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
+import { Select } from 'antd';
 const { Option } = Select;
 const apiUrl = import.meta.env.VITE_API_URL;
 

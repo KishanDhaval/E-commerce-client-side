@@ -96,74 +96,75 @@ const CartPage = () => {
             </h4>
           </div>
         </div>
-        <div className="row">
-          <div className="col-md-8">
-            {cart?.map((p) => (
-              <div key={p._id} className="row mb-2 card flex-row">
-                <div className="col-md-4 m">
-                  <img
-                    src={`${apiUrl}/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                  />
+        {cart.length > 0 &&
+          <div className="row">
+            <div className="col-md-8">
+              {cart?.map((p) => (
+                <div key={p._id} className="row mb-2 card flex-row">
+                  <div className="col-md-4 m">
+                    <img
+                      src={`${apiUrl}/api/v1/product/product-photo/${p._id}`}
+                      className="card-img-top"
+                      alt={p.name}
+                    />
+                  </div>
+                  <div className="col-md-8 p-3">
+                    <h3>
+                      {p.name}
+                    </h3>
+                    <h6>{p.description}</h6>
+                    <h6>${p.price}</h6>
+                    <button className='btn btn-danger' onClick={() => removeCartItem(p._id)}>remove</button>
+                  </div>
                 </div>
-                <div className="col-md-8">
-                  <p>
-                    {p.name}
-                  </p>
-                  <p>{p.description.substring(0, 30)}</p>
-                  <p>{p.price}</p>
-                  <button className='btn btn-danger' onClick={() => removeCartItem(p._id)}>remove</button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="col-md-4 text-center">
-            <h3>Cart Summery</h3>
-            <p>Total | Checkout | Payment</p>
-            <hr />
-            <h4>Total : {totalPrice()}</h4>
-            {user?.address ?
-              <>
-                <div className="mb-3">
-                  <h4>Current Address :</h4>
-                  <h5>{user?.address}</h5>
-                  <button className='btn btn-outline-warning' onClick={() => navigate('/dashboard/user/profile')}>Update Address</button>
-                </div>
-              </>
-              :
-              <>
-                <div className="mb-3">
-                  {
-                    user?.token ?
-                      (
+              ))}
+            </div>
+            <div className="col-md-4 text-center">
+              <h3>Cart Summery</h3>
+              <p>Total | Checkout | Payment</p>
+              <hr />
+              <h4>Total : {totalPrice()}</h4>
+              {user?.address ?
+                <>
+                  <div className="mb-3">
+                    <h4>Current Address :</h4>
+                    <h5>{user?.address}</h5>
+                    <button className='btn btn-outline-warning' onClick={() => navigate('/dashboard/user/profile')}>Update Address</button>
+                  </div>
+                </>
+                :
+                <>
+                  <div className="mb-3">
+                    {
+                      user?.token ?
+                        (
 
-                        <button
-                          className='btn btn-outline-warning'
-                          onClick={() => navigate('/dashboard/user/profile')}
-                        >
-                          Update Address
-                        </button>
-                      )
-                      :
-                      (
-                        <button
-                          className='btn btn-outline-warning'
-                          onClick={() => navigate('/login', {
-                            state: '/cart'
-                          })}
-                        >
-                          Please login to checkout
-                        </button>
-                      )
-                  }
-                </div>
-              </>
-            }
+                          <button
+                            className='btn btn-outline-warning'
+                            onClick={() => navigate('/dashboard/user/profile')}
+                          >
+                            Update Address
+                          </button>
+                        )
+                        :
+                        (
+                          <button
+                            className='btn btn-outline-warning'
+                            onClick={() => navigate('/login', {
+                              state: '/cart'
+                            })}
+                          >
+                            Please login to checkout
+                          </button>
+                        )
+                    }
+                  </div>
+                </>
+              }
 
-            <div className="mt-2">
-              {
-                !clientToken || !cart?.length ? ('') :(
+              <div className="mt-2">
+                {
+                  !clientToken || !cart?.length ? ('') : (
                     <>
                       <DropIn
                         options={{
@@ -180,11 +181,12 @@ const CartPage = () => {
                       </button>
                     </>
                   )
-              }
+                }
 
+              </div>
             </div>
           </div>
-        </div>
+        }
       </div>
     </Layout>
   )

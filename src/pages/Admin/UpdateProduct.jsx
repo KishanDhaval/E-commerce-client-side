@@ -126,10 +126,19 @@ const UpdateProduct = () => {
                 value={category}
               >
                 {categories?.map((c) => (
-                  <Option key={c._id} value={c._id}>
-                    {c.name}
-                  </Option>
-                ))}
+                    <React.Fragment key={c._id}>
+                      <Option value={c._id}>
+                        {c.name}
+                      </Option>
+                      {c.children?.length > 0 &&
+                        c.children.map((sub) => (
+                          <Option key={sub._id} value={sub._id}>
+                            -- {sub.name}
+                          </Option>
+                        ))
+                      }
+                    </React.Fragment>
+                  ))}
               </Select>
               <div className="mb-3">
                 <label className="btn btn-outline-secondary col-md-12">
