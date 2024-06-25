@@ -1,6 +1,6 @@
 import React from 'react'
 import toast from 'react-hot-toast'
-import styles from './Card.module.css'
+import styles from '../../public/styles/Card.module.css'
 import { useCart } from '../context/CartContext';
 const apiUrl = import.meta.env.VITE_API_URL;
 import {useNavigate} from 'react-router-dom'

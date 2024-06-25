@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './SearchInput.module.css'
+import styles from '../../../public/styles/SearchInput.module.css'
 import { useSearch } from '../../context/SearchContext'
 import { useNavigate } from 'react-router-dom';
 import { GoSearch } from "react-icons/go";

@@ -6,7 +6,7 @@ import SearchInput from '../Form/SearchInput';
 import useCategory from '../../hooks/useCategory';
 import { useCart } from '../../context/CartContext';
 import { LuShoppingCart } from "react-icons/lu";
-import styles from './Navbar.module.css';
+import styles from '../../../public/styles/Navbar.module.css'
 import CategoryMenu from './CategoryMenu';
 
 const Navbar = () => {

@@ -3,8 +3,8 @@ import UserMenu from '../../components/Layouts/UserMenu'
 import Layout from '../../components/Layouts/Layout'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useUpdateProfile } from '../../hooks/useUpdateProfile'
-import { useNavigate } from 'react-router-dom'
-import styles from '../Auth/Register.module.css'
+import { Link, useNavigate } from 'react-router-dom'
+import styles from '../../../public/styles/Register.module.css'
 const Profile = () => {
     // context
     const { user, state, dispatch } = useAuthContext()
@@ -113,7 +113,7 @@ const Profile = () => {
                                     {error && <div className="error">{error}</div>}
 
                                 </form>
-                                <p>go back? <a href="/">home</a></p>
+                                <p>go back? <Link to="/">home</Link></p>
                             </div>
                         </div>
                     </div>

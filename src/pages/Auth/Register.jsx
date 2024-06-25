@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Layout from './../../components/Layouts/Layout'
 import { useRegister } from '../../hooks/useRegister'
-import styles from './Register.module.css'
+import styles from '../../../public/styles/Register.module.css'
 const Register = () => {
 
     const [name, setName] = useState('')
