@@ -97,7 +97,7 @@ const Register = () => {
 
                         <button disabled={isLoading} type="submit" className={styles.Btn}>Submit</button>
   
-                    {error && <div className="error">{error}</div>}
+                    {error && <div className={styles.error}>{error}</div>}
 
                 </form>
                 <p>Already registered? <a href="/login">Login</a></p>

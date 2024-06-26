@@ -161,28 +161,30 @@ const CartPage = () => {
                 </>
               }
 
+              {user?.token && 
               <div className="mt-2">
-                {
-                  !clientToken || !cart?.length ? ('') : (
-                    <>
-                      <DropIn
-                        options={{
-                          authorization: clientToken,
-                          paypal: {
-                            flow: 'vault'
-                          }
-                        }}
-                        onInstance={(instance) => setInstance(instance)}
-                      />
+              {
+                !clientToken || !cart?.length ? ('') : (
+                  <>
+                    <DropIn
+                      options={{
+                        authorization: clientToken,
+                        paypal: {
+                          flow: 'vault'
+                        }
+                      }}
+                      onInstance={(instance) => setInstance(instance)}
+                    />
 
-                      <button className='btn btn-primary' onClick={handlePayment} disabled={loading || !instance || !user?.address}>
-                        {loading ? 'Processing' : 'Make Payment'}
-                      </button>
-                    </>
-                  )
-                }
+                    <button className='btn btn-primary' onClick={handlePayment} disabled={loading || !instance || !user?.address}>
+                      {loading ? 'Processing' : 'Make Payment'}
+                    </button>
+                  </>
+                )
+              }
 
-              </div>
+            </div>
+              }
             </div>
           </div>
         }

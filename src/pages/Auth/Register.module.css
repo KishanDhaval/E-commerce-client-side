@@ -73,3 +73,9 @@ input:valid {
     gap: 10px;
 }
 
+.error{
+  border: 0.1px solid red;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: red;
+}

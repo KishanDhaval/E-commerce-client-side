@@ -4,14 +4,16 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Card from '../components/Card';
 import Loader from '../components/Loader';
+import { useCart } from '../context/CartContext';
 const apiUrl = import.meta.env.VITE_API_URL;
+import toast from 'react-hot-toast';
 
 const ProductDetail = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [relatedProduct, setRelatedProduct] = useState([])
-
+  const [cart , setCart] = useCart()
 
   useEffect(() => {
     if (slug) {
@@ -65,7 +67,12 @@ const ProductDetail = () => {
           <h6>Price: ${product.price}</h6>
           <h6>Category: {product.category?.name}</h6>
           <h6>Shipping: {product.shipping ? 'Available' : 'Not Available'}</h6>
-          <button className="btn btn-secondary ms-1">Add to cart</button>
+          {/* <button className="btn btn-secondary ms-1">Add to cart</button> */}
+          <button className="btn btn-secondary ms-1" onClick={() => {
+            setCart([...cart, product])
+            localStorage.setItem("cart", JSON.stringify([...cart, product]))
+            toast.success("Item added to cart ")
+          }}>Add to cart</button>
         </div>
       </div>
       <hr />
