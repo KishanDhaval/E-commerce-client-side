@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layouts/Layout';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Card from '../components/Card';
+import Loader from '../components/Loader';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const ProductDetail = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
-  const navigate  = useNavigate()
   const [relatedProduct, setRelatedProduct] = useState([])
 
 
@@ -42,16 +42,14 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <Layout>
-        <div className="container mt-2">
-          <h2>Loading...</h2>
-        </div>
+      <Layout title={'Loading...'}>
+        <Loader />
       </Layout>
     );
   }
 
   return (
-    <Layout  title={'Ecommerce - product detail'}>
+    <Layout title={'Ecommerce - product detail'}>
       <div className="row container mt-2">
         <div className="col-md-4">
           <img
@@ -73,14 +71,12 @@ const ProductDetail = () => {
       <hr />
       <div className="row mt-4 ">
         <h1 className="text-center">Similar Products</h1>
-        {relatedProduct.length <1 && (<p className='text-center'>No Similar products found</p>)}
+        {relatedProduct.length < 1 && (<p className='text-center'>No Similar products found</p>)}
         <div className="d-flex flex-wrap">
-            {relatedProduct?.map((p) => (
-              <Card product={p}/>
-            ))}
-          </div>
-
-       
+          {relatedProduct?.map((p) => (
+            <Card product={p} />
+          ))}
+        </div>
       </div>
     </Layout>
   );

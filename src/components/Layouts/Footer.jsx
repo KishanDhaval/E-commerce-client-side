@@ -40,8 +40,8 @@ const Footer = () => {
           <div className="col-md-3">
             <h5>Contact Us</h5>
             <ul className={styles.footerLinks}>
-              <li><a href="mailto:support@example.com">support@example.com</a></li>
-              <li><a href="tel:+1234567890">+1 234 567 890</a></li>
+              <li><a href="mailto:support@example.com">kp19@gmail.com</a></li>
+              <li><a href="tel:+1234567890">+91 234 567 890</a></li>
               <li>1234 Street Name, City, Country</li>
             </ul>
           </div>

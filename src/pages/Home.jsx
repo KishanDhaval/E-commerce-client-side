@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layouts/Layout';
 import axios from 'axios';
 import { Prices } from '../components/Prices';
-import { useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
-import toast from 'react-hot-toast';
 import styles from './Home.module.css'
 import Loader from '../components/Loader';
 import Card from '../components/Card';
+import { Link } from 'react-router-dom';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -21,7 +19,6 @@ const Home = () => {
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [btnLoading, setBtnLoading] = useState(false)
-  const [cart, setCart] = useCart()
 
 
   // Get all products
@@ -114,10 +111,13 @@ const Home = () => {
 
   // Reset filters
   const resetFilters = () => {
-    setChecked([]);
-    setRadio([]);
-    getAllProduct();
+    if (checked.length > 0 || radio.length > 0) {
+      setChecked([]);
+      setRadio([]);
+      getAllProduct();
+    }
   };
+
 
 
 
@@ -131,13 +131,22 @@ const Home = () => {
               {loading ?
                 <p>Loading...</p>
                 : (categories?.map((c) => (
-                  <div key={c._id} className={styles.input}>
-                    <input onChange={(e) => handleFilter(e.target.checked, c._id)} checked={checked.includes(c._id)} type="checkbox" name="category" id="category" />
-                    <label htmlFor="category">{c.name}</label>
-                  </div>
+                  <>
+                    <div key={c._id} className={styles.input}>
+                      <input onChange={(e) => handleFilter(e.target.checked, c._id)} checked={checked.includes(c._id)} type="checkbox" name="category" id="category" />
+                      <label htmlFor="category">{c.name}</label>
+                    </div>
+                    {c?.children?.length > 0 && (
+                      c.children.map((sub) => (
+                        <div key={sub._id} className={styles.input}>
+                          --<input onChange={(e) => handleFilter(e.target.checked, sub._id)} checked={checked.includes(sub._id)} type="checkbox" name="category" id="category" />
+                          <label htmlFor="category">{sub.name}</label>
+                        </div>
+                      ))
+                    )}
+                  </>
                 )))}
             </div>
-            {JSON.stringify()}
             <div className={styles.filter}>
               <h5>Filter By Price</h5>
               {Prices?.map((p) => (
@@ -156,14 +165,15 @@ const Home = () => {
               <Loader />
               :
               <>
-                <h1 className="text-center">All Products</h1>
+                {products.length===0 ? <h2>There is no product in this range or category!</h2> :<h1 className="text-center">All Products</h1>}
                 <div className="d-flex flex-wrap  ">
-                  {products?.map((p) => (
-                    <Card  product={p}/>
+                  {products.length ===0 ? <p>Try another</p>:
+                  products?.map((p) => (
+                    <Card product={p} />
                   ))}
                 </div>
                 <div className="m-2 p-2 text-center">
-                  {products && products.length < total && (
+                  {products.length >0 && products.length < total && (
                     <button className='btn btn-warning'
                       onClick={(e) => {
                         e.preventDefault()
