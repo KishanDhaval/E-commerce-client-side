@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Spinner from "../Spinner";
-const apiUrl = import.meta.env.VITE_API_URL;
+import axiosInstance from "../../utils/axiosConfig";
+import Loader from "../Loader";
 
 export default function AdminRoute() {
     const [ok, setOk] = useState(false);
@@ -17,7 +16,7 @@ export default function AdminRoute() {
                     return;
                 }
 
-                const response = await axios.get(`${apiUrl}/api/v1/auth/admin-auth`, {
+                const response = await axiosInstance.get(`/api/v1/auth/admin-auth`, {
                     headers: {
                         'Authorization': `Bearer ${user.token}`
                     }
@@ -41,7 +40,7 @@ export default function AdminRoute() {
 
     // Show spinner while waiting for authentication check to complete
     if (!ok) {
-        return <Spinner />;
+        return <Loader />;
     }
 
     return <Outlet />;

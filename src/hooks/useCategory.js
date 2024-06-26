@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-const apiUrl = import.meta.env.VITE_API_URL;
+import axiosInstance from "../utils/axiosConfig";
 
 export default function useCategory() {
     const [categories, setCategories] = useState([]);
@@ -8,7 +7,7 @@ export default function useCategory() {
     // Get categories
     const getCategory = async () => {
         try {
-            const { data } = await axios.get(`${apiUrl}/api/v1/category/get-category`);
+            const { data } = await axiosInstance.get(`/api/v1/category/get-category`);
             setCategories(data?.category);
         } catch (error) {
             console.log(error);

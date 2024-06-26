@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 
 const DisableInspect = () => {
     useEffect(() => {
@@ -9,9 +9,7 @@ const DisableInspect = () => {
                 alert('Inspect Element is disabled.');
             }
         };
-
         document.addEventListener('keydown', handleKeyDown);
-
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };

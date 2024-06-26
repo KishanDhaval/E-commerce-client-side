@@ -28,7 +28,7 @@ const Navbar = () => {
                 <ul className={styles.nav_part2}>
                     <SearchInput />
                     <li><Link to="/" className={styles.active}>Home</Link></li>
-                    {/* componetn for list category in navbar */}
+                    {/* component for list category in navbar */}
                     <CategoryMenu categories={categories}/>
                     
                     {user ? (

@@ -7,7 +7,7 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { login, } = useLogin()
+    const { login, error} = useLogin()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -48,6 +48,8 @@ const Login = () => {
                             <button type="button" onClick={() => { navigate('/forgot-password') }} className={styles.Btn}>Forgot Password</button>
                             <button type="submit" className={styles.Btn}>Login</button>
                         </div>
+                        {error && <div className={styles.error}>{error}</div>}
+
                     </form>
                     <p>Not registered? <a href="/register">Register</a></p>
                 </div>

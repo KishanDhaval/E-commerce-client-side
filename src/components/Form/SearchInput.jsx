@@ -4,8 +4,7 @@ import { useSearch } from '../../context/SearchContext'
 import { useNavigate } from 'react-router-dom';
 import { GoSearch } from "react-icons/go";
 
-const apiUrl = import.meta.env.VITE_API_URL;
-import axios from 'axios'
+import axiosInstance from '../../utils/axiosConfig';
 
 const SearchInput = () => {
 
@@ -15,9 +14,8 @@ const SearchInput = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const { data } = await axios.get(`${apiUrl}/api/v1/product/search/${values.keyword}`)
+            const { data } = await axiosInstance.get(`/api/v1/product/search/${values.keyword}`)
             setValues({ ...values, results: data })
-            console.log(values);
             navigate('/search')
         } catch (error) {
             console.log(error);

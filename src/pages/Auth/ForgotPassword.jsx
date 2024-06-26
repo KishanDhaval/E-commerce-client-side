@@ -1,65 +1,60 @@
 import React, { useState } from 'react'
 import Layout from '../../components/Layouts/Layout'
 import { useForgotPassword } from '../../hooks/useForgotPassword'
+import styles from './Register.module.css'
 
 const ForgotPassword = () => {
   
     const [email, setEmail] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [answer, setAnswer] = useState('')
-    const { login} = useForgotPassword()
+    const { resetPass} = useForgotPassword()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        await login(email, newPassword , answer)
+        await resetPass(email, newPassword , answer)
     }
   return (
     <Layout title={'forgot password- Eccomerce app'}>
-           <div className="register">
+          <div className={styles.form_container}>
+          <div className={styles.form}>
                 <h1>Reset password</h1>
-                <form onSubmit={handleSubmit}>
-
-
-                    <div className="mb-3">
-                        <input type="email"
-                            value={email}
+                <form onSubmit={handleSubmit}> 
+                        <input
+                            type="email"
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder='email'
-                            className="form-control"
-                            id="email"
-                            aria-describedby="emailHelp"
                             required
+                            value={email}
+                            id="email"
+                            className={styles.input}
+                            autoComplete="off"
+                            placeholder="email here.."
                         />
-                    </div>
-                    <div className="mb-3">
-                        <input type="text"
+                        <input
+                         type="text"
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
                             placeholder='what is your favaroit sports'
-                            className="form-control"
+                            className={styles.input}
                             id="answer"
                             aria-describedby="emailHelp"
                             required
                         />
-                    </div>
-
-                    <div className="mb-3">
-                        <input type="password"
-                            value={newPassword}
+                  
+                        <input
+                            type="password"
                             onChange={(e) => setNewPassword(e.target.value)}
-                            placeholder='New password'
-                            className="form-control"
-                            id="newPassword"
                             required
+                            value={newPassword}
+                            id="newPassword"
+                            autoComplete="off"
+                            className={styles.input}
+                            placeholder="new password here.."
                         />
+                            <button type="submit" className={styles.Btn}>Update</button>
+                    </form>
+                    <p>already Remember? <a href="/login">login</a></p>
                     </div>
-
-                    
-                    <button type="submit" className="btn btn-primary">reset</button>
-
-
-                </form>
             </div>
     </Layout>
   )

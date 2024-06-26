@@ -36,7 +36,7 @@ function App() {
 
   return (
     <>
-    <DisableInspect/>
+    {/* <DisableInspect/> */}
       <Toaster />
       <Routes>
         {/* nasted route using protected route */}

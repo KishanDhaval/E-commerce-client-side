@@ -173,7 +173,7 @@ const Home = () => {
                   ))}
                 </div>
                 <div className="m-2 p-2 text-center">
-                  {products.length >0 && products.length < total && (
+                  {(checked.length === 0 && radio.length === 0) && products.length >0 && products.length < total && (
                     <button className='btn btn-warning'
                       onClick={(e) => {
                         e.preventDefault()
