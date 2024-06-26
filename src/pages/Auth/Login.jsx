@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Layout from '../../components/Layouts/Layout'
 import { useLogin } from '../../hooks/useLogin'
 import { useNavigate } from 'react-router-dom'
-import styles from '../../../public/styles/Login.module.css'
+import styles from './Login.module.css'
 const Login = () => {
 
     const [email, setEmail] = useState('')

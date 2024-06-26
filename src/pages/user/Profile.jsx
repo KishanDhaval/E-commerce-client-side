@@ -4,7 +4,7 @@ import Layout from '../../components/Layouts/Layout'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useUpdateProfile } from '../../hooks/useUpdateProfile'
 import { Link, useNavigate } from 'react-router-dom'
-import styles from '../../../public/styles/Register.module.css'
+import styles from '../Auth/Register.module.css'
 const Profile = () => {
     // context
     const { user, state, dispatch } = useAuthContext()

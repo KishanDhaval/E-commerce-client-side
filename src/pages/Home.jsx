@@ -5,7 +5,7 @@ import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import toast from 'react-hot-toast';
-import styles from '../../public/styles/Home.module.css'
+import styles from './Home.module.css'
 import Loader from '../components/Loader';
 import Card from '../components/Card';
 
