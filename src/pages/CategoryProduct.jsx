@@ -3,6 +3,7 @@ import Layout from '../components/Layouts/Layout'
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import Card from '../components/Card';
+import axiosInstance from '../utils/axiosConfig';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -13,7 +14,7 @@ const params = useParams()
 
     const getProductByCat =async()=>{
         try {
-            const {data} = await axios.get(`${apiUrl}/api/v1/product/product-category/${params.slug}`)
+            const {data} = await axiosInstance.get(`/api/v1/product/product-category/${params.slug}`)
             setProducts(data?.products)
             setCategory(data?.category)
         } catch (error) {

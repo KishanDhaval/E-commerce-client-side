@@ -6,6 +6,7 @@ import moment from 'moment'
 const apiUrl = import.meta.env.VITE_API_URL;
 
 import { useAuthContext } from '../../hooks/useAuthContext';
+import axiosInstance from '../../utils/axiosConfig'
 
 const Orders = () => {
     const { user } = useAuthContext()
@@ -14,7 +15,7 @@ const Orders = () => {
 
     const getOrder = async () => {
         try {
-            const { data } = await axios.get(`${apiUrl}/api/v1/auth/orders`)
+            const { data } = await axiosInstance.get(`/api/v1/auth/orders`)
             setOrders(data?.orders)
         } catch (error) {
             console.log(error);

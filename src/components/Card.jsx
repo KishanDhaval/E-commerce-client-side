@@ -10,7 +10,7 @@ const Card = ({product}) => {
     const [cart , setCart]  = useCart()
     return (
         <div>
-            <div key={product._id} className={styles.card} style={{ width: '18rem' }}>
+            <div key={product._id} className={styles.card} >
                 <img
                     src={`${apiUrl}/api/v1/product/product-photo/${product._id}`}
                     className={styles.img}

@@ -4,6 +4,7 @@ import Layout from '../../components/Layouts/Layout'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
+import axiosInstance from '../../utils/axiosConfig'
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -14,7 +15,7 @@ const Products = () => {
     // get all product
     const getAllProduct = async () => {
         try {
-            const { data } = await axios.get(`${apiUrl}/api/v1/product/get-products`)
+            const { data } = await axiosInstance.get(`/api/v1/product/get-products`)
             setProducts(data.products)  
         } catch (error) {
             console.log(error);

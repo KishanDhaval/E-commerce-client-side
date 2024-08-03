@@ -8,6 +8,7 @@ import { useCart } from '../../context/CartContext';
 import { LuShoppingCart } from "react-icons/lu";
 import styles from './Navbar.module.css'
 import CategoryMenu from './CategoryMenu';
+import { HiMenu } from "react-icons/hi";
 
 const Navbar = () => {
     const { user } = useAuthContext();
@@ -25,12 +26,12 @@ const Navbar = () => {
                 <Link to="/">E-commerce</Link>
             </div>
             <div className={styles.main_menu}>
-                <ul className={styles.nav_part2}>
                     <SearchInput />
+                <ul className={styles.nav_part2}>
                     <li><Link to="/" className={styles.active}>Home</Link></li>
                     {/* component for list category in navbar */}
-                    <CategoryMenu categories={categories}/>
-                    
+                    <CategoryMenu categories={categories} />
+
                     {user ? (
                         <li className={styles.has_dropdown}>
                             <Link to="#">{user?.name.split(' ')[0]} <i className="fas fa-angle-down"></i></Link>

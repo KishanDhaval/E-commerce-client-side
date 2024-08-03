@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layouts/Layout';
 import AdminMenu from '../../components/Layouts/AdminMenu';
-import axios from 'axios';
 import moment from 'moment';
 import { Select } from 'antd';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import axiosInstance from '../../utils/axiosConfig';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -18,7 +18,7 @@ const AdminOrder = () => {
   
     const getOrders = async () => {
       try {
-        const { data } = await axios.get(`${apiUrl}/api/v1/auth/all-orders`);
+        const { data } = await axiosInstance.get(`/api/v1/auth/all-orders`);
         setOrders(data?.orders);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -32,7 +32,7 @@ const AdminOrder = () => {
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
-        const {data} = await axios.put(`${apiUrl}/api/v1/auth/order-status/${orderId}` ,{status : newStatus})
+        const {data} = await axiosInstance.put(`/api/v1/auth/order-status/${orderId}` ,{status : newStatus})
         getOrders()
     } catch (error) {
       console.error('Error updating order status:', error);

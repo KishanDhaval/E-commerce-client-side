@@ -1,8 +1,7 @@
 import { useAuthContext } from './useAuthContext';
 import { useState } from 'react';
-import axios from 'axios';
-
-const apiUrl = import.meta.env.VITE_API_URL;
+import axiosInstance from '../utils/axiosConfig';
+import toast from 'react-hot-toast';
 
 export const useRegister = () => {    
     const [error, setError] = useState(null);   
@@ -14,22 +13,21 @@ export const useRegister = () => {
         setError(null);
 
         try {
-            const response = await axios.post(`${apiUrl}/api/v1/auth/register`, {
+            const {data} = await axiosInstance.post(`/api/v1/auth/register`, {
                 name, email, password, phone, address, answer
             })
 
-            const json = response.data;
-
             // save the user to local storage
-            localStorage.setItem('user', JSON.stringify(json));
+            localStorage.setItem('user', JSON.stringify(data));
 
             // update the auth context
-            dispatch({ type: 'LOGIN', payload: json });
-
+            dispatch({ type: 'LOGIN', payload: data });
             setIsLoading(false);
+            toast.success(data.message)
         } catch (error) {
             setIsLoading(false);
             setError(error.response && error.response.data ? error.response.data.error : error.message);
+            toast.error(data.message)
         }
     };
 

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layouts/Layout';
-import axios from 'axios';
+
 import { Prices } from '../components/Prices';
 import styles from './Home.module.css'
 import Loader from '../components/Loader';
 import Card from '../components/Card';
-import { Link } from 'react-router-dom';
+import axiosInstance from '../utils/axiosConfig';
 
-const apiUrl = import.meta.env.VITE_API_URL;
 
 const Home = () => {
 
@@ -25,7 +24,7 @@ const Home = () => {
   const getAllProduct = async () => {
     try {
       setLoading(true)
-      const { data } = await axios.get(`${apiUrl}/api/v1/product/product-list/${page}`);
+      const { data } = await axiosInstance.get(`/api/v1/product/product-list/${page}`);
       setLoading(false)
       setProducts(data.products);
     } catch (error) {
@@ -41,7 +40,7 @@ const Home = () => {
   // Get all categories
   const getAllcategory = async () => {
     try {
-      const { data } = await axios.get(`${apiUrl}/api/v1/category/get-category`);
+      const { data } = await axiosInstance.get(`/api/v1/category/get-category`);
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -64,7 +63,7 @@ const Home = () => {
   // Get filtered products
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post(`${apiUrl}/api/v1/product/product-filter`, { checked, radio });
+      const { data } = await axiosInstance.post(`/api/v1/product/product-filter`, { checked, radio });
       setProducts(data.products);
     } catch (error) {
       console.log(error);
@@ -74,7 +73,7 @@ const Home = () => {
   // getTotal count
   const getTotal = async () => {
     try {
-      const { data } = await axios.get(`${apiUrl}/api/v1/product/product-count`)
+      const { data } = await axiosInstance.get(`/api/v1/product/product-count`)
       setTotal(data?.total)
     } catch (error) {
       console.log(error);
@@ -85,7 +84,7 @@ const Home = () => {
   const loadMore = async () => {
     try {
       setBtnLoading(true)
-      const { data } = await axios.get(`${apiUrl}/api/v1/product/product-list/${page}`)
+      const { data } = await axiosInstance.get(`/api/v1/product/product-list/${page}`)
       setBtnLoading(false)
       setProducts([...products, ...data?.products])
     } catch (error) {
@@ -166,7 +165,7 @@ const Home = () => {
               :
               <>
                 {products.length===0 ? <h2>There is no product in this range or category!</h2> :<h1 className="text-center">All Products</h1>}
-                <div className="d-flex flex-wrap  ">
+                <div className="d-flex flex-wrap w-100 ">
                   {products.length ===0 ? <p>Try another</p>:
                   products?.map((p) => (
                     <Card product={p} />

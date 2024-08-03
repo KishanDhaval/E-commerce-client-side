@@ -1,36 +1,31 @@
+import axiosInstance from '../utils/axiosConfig';
 import { useAuthContext } from './useAuthContext';
 import { useState } from 'react';
-
-const apiUrl = import.meta.env.VITE_API_URL;
+import toast from 'react-hot-toast';
 
 export const useLogin = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false); 
     const { dispatch } = useAuthContext();
 
-   
-
     const login = async (email, password) => {
         setIsLoading(true);
         setError(null);
 
         try {
-            const response = await fetch(`${apiUrl}/api/v1/auth/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
+            const { data } = await axiosInstance.post(`/api/v1/auth/login`, { email, password });
 
-            const json = await response.json();
-          
-            if (!response.ok) {
-                setError(json.error);
+            if (!data.success) {
+                setError(data.error);
+                toast.error(data.message);
             } else {
-                localStorage.setItem('user', JSON.stringify(json));
-                dispatch({ type: 'LOGIN', payload: json });
+                localStorage.setItem('user', JSON.stringify(data));
+                dispatch({ type: 'LOGIN', payload: data });
+                toast.success(data.message);
             }
         } catch (error) {
             setError('Failed to login. Please try again.');
+            toast.error('Failed to login. Please try again.');
         } finally {
             setIsLoading(false);
         }

@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import AdminMenu from '../../components/Layouts/AdminMenu';
 import Layout from '../../components/Layouts/Layout';
 import toast from 'react-hot-toast';
-import axios from 'axios';
 import CategoryForm from '../../components/Form/CategoryForm';
 import { Modal } from 'antd';
+import axiosInstance from '../../utils/axiosConfig';
 
-const apiUrl = import.meta.env.VITE_API_URL;
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -20,7 +19,7 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${apiUrl}/api/v1/category/create-category`, { name, parentId :parent });
+      const { data } = await axiosInstance.post(`/api/v1/category/create-category`, { name, parentId :parent });
       if (data.success) {
         toast.success(data.message);
         getAllcategory();
@@ -38,7 +37,7 @@ const CreateCategory = () => {
   // Get all categories
   const getAllcategory = async () => {
     try {
-      const { data } = await axios.get(`${apiUrl}/api/v1/category/get-category`);
+      const { data } = await axiosInstance.get(`/api/v1/category/get-category`);
       if (data.success) {
         setCategories(data.category);
       }
@@ -56,7 +55,7 @@ const CreateCategory = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put(`${apiUrl}/api/v1/category/update-category/${selected._id}`, { name: updatedName, parent });
+      const { data } = await axiosInstance.put(`/api/v1/category/update-category/${selected._id}`, { name: updatedName, parent });
       if (data.success) {
         toast.success(data.message);
         setSelected(null);
@@ -75,7 +74,7 @@ const CreateCategory = () => {
   // Delete category
   const handleDelete = async (pid) => {
     try {
-      const { data } = await axios.delete(`${apiUrl}/api/v1/category/delete-category/${pid}`);
+      const { data } = await axiosInstance.delete(`/api/v1/category/delete-category/${pid}`);
       if (data.success) {
         toast.success(data.message);
         getAllcategory();

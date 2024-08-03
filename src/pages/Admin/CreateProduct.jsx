@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layouts/Layout';
 import AdminMenu from '../../components/Layouts/AdminMenu';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import { Select } from 'antd';
+import axiosInstance from '../../utils/axiosConfig';
 const { Option } = Select;
-const apiUrl = import.meta.env.VITE_API_URL;
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ const CreateProduct = () => {
 
   const getAllcategory = async () => {
     try {
-      const { data } = await axios.get(`${apiUrl}/api/v1/category/get-category`);
+      const { data } = await axiosInstance.get(`/api/v1/category/get-category`);
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -50,7 +49,7 @@ const CreateProduct = () => {
         productData.append('photo', photo);
       }
 
-      const { data } = await axios.post(`${apiUrl}/api/v1/product/create-product`, productData);
+      const { data } = await axiosInstance.post(`/api/v1/product/create-product`, productData);
       if (data?.success) {
         toast.success(data?.message);
         // navigate('/dashboard/admin/products');

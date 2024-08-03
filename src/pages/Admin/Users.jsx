@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/Layouts/Layout'
 import AdminMenu from '../../components/Layouts/AdminMenu'
-import axios from 'axios'
-const apiUrl = import.meta.env.VITE_API_URL;
+import axiosInstance from '../../utils/axiosConfig';
 
 const Users = () => {
 
@@ -10,7 +9,7 @@ const Users = () => {
 
     const getAllUser = async()=>{
         try {
-            const {data} = await axios.get(`${apiUrl}/api/v1/auth/all-users`)
+            const {data} = await axiosInstance.get(`/api/v1/auth/all-users`)
             setUsers(data.users)
         } catch (error) {
             console.log(error);

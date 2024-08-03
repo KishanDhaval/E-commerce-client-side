@@ -1,8 +1,6 @@
-import axios from "axios";
 import { useAuthContext } from "./useAuthContext";
 import { useState } from "react";
-
-const apiUrl = import.meta.env.VITE_API_URL;
+import axiosInstance from "../utils/axiosConfig";
 
 export const useUpdateProfile = () => {
   const [error, setError] = useState(null);
@@ -29,7 +27,7 @@ export const useUpdateProfile = () => {
         },
       };
 
-      const { data } = await axios.put(`${apiUrl}/api/v1/auth/update-profile`, {
+      const { data } = await axiosInstance.put(`/api/v1/auth/update-profile`, {
         name,
         email,
         password,

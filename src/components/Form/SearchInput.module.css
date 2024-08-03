@@ -2,7 +2,7 @@
 .searchBar {
     display: flex;
     box-sizing: border-box;
-    width: 30rem;
+    min-width: 35vw;
 }
 
 .searchBar input {

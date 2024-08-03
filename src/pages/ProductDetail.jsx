@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layouts/Layout';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Card from '../components/Card';
 import Loader from '../components/Loader';
 import { useCart } from '../context/CartContext';
 const apiUrl = import.meta.env.VITE_API_URL;
 import toast from 'react-hot-toast';
+import axiosInstance from '../utils/axiosConfig';
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -23,7 +23,7 @@ const ProductDetail = () => {
 
   const getProduct = async () => {
     try {
-      const { data } = await axios.get(`${apiUrl}/api/v1/product/get-product/${slug}`);
+      const { data } = await axiosInstance.get(`/api/v1/product/get-product/${slug}`);
       setProduct(data?.product);
       getSimilarProduct(data?.product._id, data?.product.category._id)
       setLoading(false);
@@ -35,7 +35,7 @@ const ProductDetail = () => {
 
   const getSimilarProduct = async (pid, cid) => {
     try {
-      const { data } = await axios.get(`${apiUrl}/api/v1/product/related-product/${pid}/${cid}`)
+      const { data } = await axiosInstance.get(`/api/v1/product/related-product/${pid}/${cid}`)
       setRelatedProduct(data?.products)
     } catch (error) {
       console.log();
