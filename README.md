@@ -18,3 +18,7 @@ This is a full-stack e-commerce website built using the **MERN (MongoDB, Express
 - **Authentication:** JWT (JSON Web Token)
 - **Payment Gateway:** Braintree
 
+![Image](https://github.com/user-attachments/assets/eeeb9e5a-4afe-4a2d-a1a3-240146858c22)
+![Image](https://github.com/user-attachments/assets/ea77ea2b-1730-4ccc-b77b-0f791ed244be)
+![Image](https://github.com/user-attachments/assets/638ee57b-3890-44dc-95e6-f966a69cce5e)
+![Image](https://github.com/user-attachments/assets/5cd9a0b3-21d9-4ed7-9e2f-b104652ebea3)
